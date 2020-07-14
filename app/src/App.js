@@ -1,31 +1,38 @@
 import React, { useState } from 'react';
-import Mensaje from './mensaje';
+import Message from './message';
 import './App.css';
 
-function App() { 
-  const [n, setN] = useState("")  
-  const [ms, setMs] = useState([])  
-  
-  return (
-    <div className="App">
-        <h1>{n}</h1>  
-        <input onKeyUp={(e)=>{
-            if(e.keyCode === 13){
-                setMs([n,...ms]);
-                e.target.value = "";
-            }
-            else
-            setN(e.target.value)}} />  
-            
-        <div>
-            {
-                ms.map((m,i)=>(
-                    <Mensaje key={i} m={m} nombre={"Elber"} />
-                ))
-            }
+function App() {
+
+    const [message, setMessage] = useState("")
+    const [messages, setMessages] = useState([])
+
+    return (
+        <div className="App">
+            <h1>{message === "" ? "Escribe el mensaje." : message}</h1>
+            <input className="redondeadonorelieve " onKeyUp={(e) => {
+
+                if (e.keyCode === 13) {
+                    setMessages([message, ...messages]);
+                    e.target.value = "";
+                }
+
+                setMessage(e.target.value)
+
+            }} />
+
+            <div>
+                {
+                    messages.map((message, i) => (
+                        <Message 
+                            key={i} 
+                            message={message} 
+                            name={"Elber"} />
+                    ))
+                }
+            </div>
         </div>
-    </div>
-  );
+    );
 }
 
 export default App;
