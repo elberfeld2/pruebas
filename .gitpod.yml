@@ -1,9 +1,5 @@
 image: gitpod/workspace-full
 
 tasks:
-  - init: ubicar 
-    command: cd app
-  - init: Instalar 
-    command: npm i
-  - init: Comenzar 
-    command: npm start
+  - init: Iniciar
+    command: cd app && npm i && npm start
