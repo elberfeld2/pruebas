@@ -1,17 +1,29 @@
 import React, { useState } from 'react';
-import logo from './logo.svg';
+import Mensaje from './mensaje';
 import './App.css';
 
-function App() {
-  const [c, setC] = useState(0)  
+function App() { 
   const [n, setN] = useState("")  
+  const [ms, setMs] = useState([])  
+  
   return (
     <div className="App">
         <h1>{n}</h1>  
-        <input onChange={(e)=>{setN(e.target.value)}} value={n} />  
-        <h1>{c}</h1>  
-        <button onClick={()=>{setC(c-1)}}>-</button>
-        <button onClick={()=>{setC(c+1)}}>+</button>
+        <input onKeyUp={(e)=>{
+            if(e.keyCode === 13){
+                setMs([n,...ms]);
+                e.target.value = "";
+            }
+            else
+            setN(e.target.value)}} />  
+            
+        <div>
+            {
+                ms.map((m,i)=>(
+                    <Mensaje key={i} m={m} nombre={"Elber"} />
+                ))
+            }
+        </div>
     </div>
   );
 }
